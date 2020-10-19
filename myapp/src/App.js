@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Ninjas from "./Ninjas";
-
+import AddNinja from "./AddNinja";
 // function App() {
 //   const [ninjas, setNinjas] = useRef([
 //     { name: "Yoshi", age: 30, belt: "Black", id: 1 },
@@ -35,11 +35,36 @@ class App extends Component {
     ],
   };
 
+  addNinja = (ninja) => {
+    ninja.id = Math.random();
+    let ninjas = [...this.state.ninjas, ninja];
+    this.setState({
+      ninjas: ninjas,
+    });
+  };
+
+  deleteNinja = (id) => {
+    let ninjas = this.state.ninjas.filter((ninja) => {
+      return ninja.id !== id;
+    });
+    this.setState({
+      ninjas: ninjas,
+    });
+  };
+
+  componentDidMount() {
+    console.log("component mounted");
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log("update");
+    console.log(prevProps, prevState);
+  }
   render() {
     return (
       <div className="App">
         <h1>My first react app</h1>
-        <Ninjas ninjas={this.state.ninjas} />
+        <Ninjas ninjas={this.state.ninjas} deleteNinja={this.deleteNinja} />
+        <AddNinja addNinja={this.addNinja} />
       </div>
     );
   }

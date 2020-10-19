@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Ninjas(props) {
-  const { ninjas } = props;
+  const { ninjas, deleteNinja } = props;
 
   //   const ninjaList = ninjas.map((ninja) => {
   // if (ninja.age > 30) {
@@ -23,6 +23,13 @@ export default function Ninjas(props) {
         <div>Name: {ninja.name}</div>
         <div>Age: {ninja.age}</div>
         <div>Belt: {ninja.belt}</div>
+        <button
+          onClick={() => {
+            deleteNinja(ninja.id);
+          }}
+        >
+          Delete Ninja
+        </button>
       </div>
     ) : null;
   });
